@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server"
 import { getServerSession } from "next-auth"
-import { authOptions } from "../auth/[...nextauth]/route"
+import { authOptions } from "@/lib/auth"
 import { saveDownloadHistory } from "@/lib/services/download.service"
 import { DownloadType } from "@prisma/client"
 import { downloadMP4 } from "@/lib/services/ytdlp.service"
@@ -29,7 +29,7 @@ export async function POST(req: Request) {
     // ✅ Check FREE plan daily limit
     const limit = await checkDownloadLimit(
       session.user.id,
-      session.user.plan
+      (session.user as any).plan
     )
 
     if (!limit.allowed) {
@@ -57,13 +57,13 @@ export async function POST(req: Request) {
       fileSize: 0,
     })
 
+    const remaining = limit.remaining ?? 1
+
     return NextResponse.json({
       success: true,
       message:
-        session.user.plan === "FREE"
-          ? `Download started. ${
-              limit.remaining - 1
-            } free downloads remaining today.`
+        (session.user as any).plan === "FREE"
+          ? `Download started. ${remaining - 1} free downloads remaining today.`
           : "Download started.",
     })
   } catch (error: any) {
