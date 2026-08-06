@@ -1,12 +1,22 @@
-import { NextResponse } from "next/server";
+import "./globals.css"
+import Providers from "./providers"
+import type { Metadata } from "next"
 
-export async function GET() {
-  return new NextResponse(
-    "google79cde6fe91873109.html",
-    {
-      headers: {
-        "Content-Type": "text/html",
-      },
-    }
-  );
+export const metadata: Metadata = {
+  title: "SaveAllHD",
+  description: "Free online video downloader tools",
+}
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  return (
+    <html lang="en">
+      <body>
+        <Providers>{children}</Providers>
+      </body>
+    </html>
+  )
 }
