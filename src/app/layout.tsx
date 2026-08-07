@@ -1,9 +1,13 @@
 import "./globals.css"
+import type { Metadata } from "next"
 import type { ReactNode } from "react"
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "SaveAllHD",
   description: "Free online video downloader tools",
+  verification: {
+    google: "5SfN9xWpXpx-AbxA78gQcNVbMZXMi3cOJFeb8e664Ds",
+  },
 }
 
 export default function RootLayout({
@@ -13,12 +17,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <head>
-        <meta
-          name="google-site-verification"
-          content="5SfN9xWpXpx-AbxA78gQcNVbMZXMi3cOJFeb8e664Ds"
-        />
-      </head>
       <body>{children}</body>
     </html>
   )
