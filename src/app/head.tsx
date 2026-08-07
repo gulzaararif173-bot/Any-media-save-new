@@ -3,8 +3,8 @@ export default function Head() {
     <>
       <meta
         name="google-site-verification"
-        content="google79cde6fe91873109"
+        content="nzZ5CtyudOnwZz-UVJdsueMkJOmGatawyZX9Aw_L_0k"
       />
     </>
-  )
+  );
 }
